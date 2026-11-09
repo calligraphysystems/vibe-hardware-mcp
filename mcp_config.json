@@ -1,7 +1,8 @@
 {
   "mcpServers": {
     "calligraphy-eda": {
-      "url": "https://calligraphyeda.com/api/v1/mcp/manifest",
+      "url": "https://calligraphyeda.com/api/v1/mcp",
+      "transport": "streamable-http",
       "description": "Calligraphy EDA — Autonomous 100.0% Completion / 0 Native KiCad DRC PCB Routing Foundry (https://calligraphyeda.com)",
       "discovery": {
         "storefront": "https://calligraphyeda.com",
@@ -11,12 +12,14 @@
         "gallery_api": "https://calligraphyeda.com/api/v1/gallery"
       },
       "tools": [
-        "preflight_quote",
-        "submit_pcb_synthesis_job",
-        "calligraphy_route_pcb",
+        "calligraphy_list_gallery_boards",
+        "calligraphy_preflight_audit",
         "calligraphy_compile_board",
+        "calligraphy_route_pcb",
         "calligraphy_get_job_status",
-        "calligraphy_verify_stablecoin_payment"
+        "calligraphy_verify_stablecoin_payment",
+        "preflight_quote",
+        "submit_pcb_synthesis_job"
       ]
     }
   }
