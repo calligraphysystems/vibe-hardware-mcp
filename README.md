@@ -1,5 +1,7 @@
 # Vibe-Coding Hardware (`vibe-hardware-mcp`)
 
+[![calligraphysystems/vibe-hardware-mcp MCP server](https://glama.ai/mcp/servers/calligraphysystems/vibe-hardware-mcp/badges/score.svg)](https://glama.ai/mcp/servers/calligraphysystems/vibe-hardware-mcp)
+
 > **Turn AI-generated schematics, breadboards, and unrouted KiCad layouts (`ESP32`, `RP2040`, `Ergogen` keyboards, `tscircuit`, `atopile`) into `100.0%` routed, `0` native KiCad DRC factory `.ZIP` bundles.**
 >
 > - **Live Foundry Storefront:** [https://calligraphyeda.com](https://calligraphyeda.com)
@@ -76,6 +78,20 @@ Once connected, paste this prompt into Claude Code or Cursor—no local `.kicad_
    - Pass `sample_id="2l_rp2040"` (`$149` 2L RP2040 Breakout), `"2l_stickhub"` (`$295` 2L 4-Port USB Hub), or `"4l_carrier"` (`$995` 4L STM32 RF Carrier) to `calligraphy_preflight_audit` or `calligraphy_compile_board`.
 2. **Mode B (Your Local `.kicad_pcb` / `.dsn` / `.ato` / `.tsx` Board):**
    - Ask Claude Code or Cursor to read your local board file from your workspace and pass its text contents in `pcb_text` + `filename` (e.g. `pcb_text="<contents of board.kicad_pcb>"`, `filename="board.kicad_pcb"`).
+
+### Option 2B: Local `stdio` / Docker MCP Bridge (`calligraphy_mcp_stdio.py`)
+If your MCP client or container runner uses `stdio` transport (or if you want the MCP wrapper to automatically read local `project_path` files from disk and bridge them to `https://calligraphyeda.com/api/v1/mcp`):
+
+```json
+{
+  "mcpServers": {
+    "calligraphy-eda": {
+      "command": "python3",
+      "args": ["/path/to/vibe-hardware-mcp/calligraphy_mcp_stdio.py"]
+    }
+  }
+}
+```
 
 ### Option 3: 1-Click Browser Test Drive (Zero Install)
 1. Open **[https://calligraphyeda.com](https://calligraphyeda.com)**.
