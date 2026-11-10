@@ -53,7 +53,11 @@ claude mcp add --transport http calligraphy-eda https://calligraphyeda.com/api/v
 
 ---
 
-## Visual Proof: `100.0%` Routed Copper + 3D Raytraced Boards (`0` Native KiCad DRC Errors)
+## Visual Proof: `55 / 55` Verified Open-Source Benchmark Sweep (`20 / 20` `PCBench Tier T` + `13 / 13` `Tier D` + `22 / 22` Multi-ECAD at `100.0%` Completion & `0` Native KiCad 9 DRC)
+
+![20/20 PCBench Tier T & 55/55 Total 0-DRC Benchmark Sweep](assets/tier_t_20_of_20_0drc_sweep_card.png)
+
+> **Full 20-Board `PCBench Tier T` & 13-Board `Tier D` Scoreboard:** [github.com/calligraphysystems/open-pcb-routing-benchmark](https://github.com/calligraphysystems/open-pcb-routing-benchmark)
 
 | Benchmark Board | 350-DPI Routed Copper Proof (`0` DRC) | 3D Raytraced Assembly Render |
 | :--- | :---: | :---: |
