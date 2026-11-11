@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vibe-hardware-mcp"
+version = "1.2.1"
+description = "Autonomous 0-DRC PCB Routing Foundry & Model Context Protocol (MCP) Server for KiCad, Robotics, IoT, ESP32, STM32 & Embedded Hardware (https://calligraphyeda.com)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+  {name = "Calligraphy Systems LLC", email = "support@calligraphyeda.com"}
+]
+keywords = ["mcp", "model-context-protocol", "kicad", "pcb", "autorouter", "hardware", "eda", "dfm", "esp32", "stm32", "robotics", "iot"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+vibe-hardware-mcp = "calligraphy_mcp_stdio:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

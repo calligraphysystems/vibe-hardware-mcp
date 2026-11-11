@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
   "name": "io.github.calligraphysystems/vibe-hardware-mcp",
-  "title": "Vibe-Coding Hardware & Autonomous PCB Physical Synthesis MCP Server",
-  "description": "Zero-dependency Python 3 MCP server & Streamable HTTP endpoint for KiCad (.kicad_pcb), Specctra (.dsn), Altium (.PcbDoc), atopile (.ato), and tscircuit (.tsx) PCB layout analysis, IPC-2141A microstrip/stripline impedance & IPC-2152 current calculation, DFM rule auditing (JLCPCB/PCBWay), and autonomous multi-layer 3D PCB routing (0 native KiCad 9 DRC violations across 55/55 verified open-source benchmark boards).",
-  "version": "1.2.0",
+  "title": "Autonomous 0-DRC PCB Routing Foundry & Hardware MCP Server",
+  "description": "Autonomous 0-DRC PCB Routing Foundry & Model Context Protocol (MCP) Server for KiCad, Robotics, IoT, ESP32, STM32 & Embedded Hardware (https://calligraphyeda.com). Includes local KiCad (.kicad_pcb) & Specctra (.dsn) analysis, IPC-2141A impedance & IPC-2152 current calculation, DFM rule auditing, and multi-layer 3D PCB routing.",
+  "version": "1.2.1",
   "websiteUrl": "https://calligraphyeda.com",
   "repository": {
     "url": "https://github.com/calligraphysystems/vibe-hardware-mcp",
@@ -27,63 +27,183 @@
   "tools": [
     {
       "name": "analyze_kicad_pcb",
-      "description": "Parse a KiCad .kicad_pcb S-expression locally to extract copper layers, board outline dimensions (mm), component/pad counts, fine-pitch density, netlist summary, and routed track/via statistics."
+      "title": "Analyze KiCad PCB Layout",
+      "description": "Parse a KiCad .kicad_pcb S-expression locally to extract copper layers, board outline dimensions (mm), component/pad counts, fine-pitch density, netlist summary, and routed track/via statistics.",
+      "annotations": {
+        "title": "Analyze KiCad PCB Layout",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
     },
     {
       "name": "analyze_specctra_dsn",
-      "description": "Parse a Specctra .dsn autorouter file locally to extract units, resolution, signal/power layers, boundary dimensions, component pin count, net connectivity, and design rule clearances/widths."
+      "title": "Analyze Specctra DSN Autorouter File",
+      "description": "Parse a Specctra .dsn autorouter file locally to extract units, resolution, signal/power layers, boundary dimensions, component pin count, net connectivity, and design rule clearances/widths.",
+      "annotations": {
+        "title": "Analyze Specctra DSN Autorouter File",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
     },
     {
       "name": "calculate_pcb_trace_impedance",
-      "description": "Closed-form IPC-2141A microstrip & stripline characteristic impedance (Z0), edge-coupled differential pair impedance (Zdiff), propagation delay (ps/mm), and IPC-2152 DC current capacity / temperature-rise calculator."
+      "title": "Calculate PCB Trace Impedance & IPC-2152 Current",
+      "description": "Closed-form IPC-2141A microstrip & stripline characteristic impedance (Z0), edge-coupled differential pair impedance (Zdiff), propagation delay (ps/mm), and IPC-2152 DC current capacity / temperature-rise calculator.",
+      "annotations": {
+        "title": "Calculate PCB Trace Impedance & IPC-2152 Current",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
     },
     {
       "name": "audit_pcb_dfm_rules",
-      "description": "Audit .kicad_pcb and .dsn trace widths, clearances, via drill diameters, and annular rings against standard_2l, standard_4l, and fine_hdi fabrication rules (JLCPCB / PCBWay)."
+      "title": "Audit PCB DFM Fabrication Rules",
+      "description": "Audit .kicad_pcb and .dsn trace widths, clearances, via drill diameters, and annular rings against standard_2l, standard_4l, and fine_hdi fabrication rules (JLCPCB / PCBWay).",
+      "annotations": {
+        "title": "Audit PCB DFM Fabrication Rules",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
     },
     {
       "name": "calligraphy_list_gallery_boards",
-      "description": "List the verified open-source reference PCB catalog and 55/55 benchmark suite (100.0% routed completion, 0 native KiCad 9 copper DRC violations)."
+      "title": "List Verified 0-DRC Benchmark Gallery Boards",
+      "description": "List the verified open-source reference PCB catalog and 55/55 benchmark suite (100.0% routed completion, 0 native KiCad 9 copper DRC violations).",
+      "annotations": {
+        "title": "List Verified 0-DRC Benchmark Gallery Boards",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_preflight_audit",
-      "description": "Run a free ($0) pre-flight CAD doctor, layer/pad/fine-pitch audit, and instant tier quote on a .kicad_pcb, .dsn, .PcbDoc, .ato, .tsx, or .zip board payload."
+      "title": "Run Pre-Flight CAD Doctor & Instant Tier Quote",
+      "description": "Run a free ($0) pre-flight CAD doctor, layer/pad/fine-pitch audit, and instant tier quote on a .kicad_pcb, .dsn, .PcbDoc, .ato, .tsx, or .zip board payload.",
+      "annotations": {
+        "title": "Run Pre-Flight CAD Doctor & Instant Tier Quote",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_compile_board",
-      "description": "Submit a PCB layout or hardware archive for autonomous multi-layer 3D routing, curvilinear G1 arc & teardrop reinforcement, and 350-DPI visual proof verification."
+      "title": "Compile & Route PCB in Cloud Enclave",
+      "description": "Submit a PCB layout or hardware archive for autonomous multi-layer 3D routing, curvilinear G1 arc & teardrop reinforcement, and 350-DPI visual proof verification.",
+      "annotations": {
+        "title": "Compile & Route PCB in Cloud Enclave",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_get_job_status",
-      "description": "Poll live synthesis progress, routing completion percentage, native KiCad DRC verification count, and 350-DPI proof tile readiness for a job."
+      "title": "Get PCB Synthesis Job Status",
+      "description": "Poll live synthesis progress, routing completion percentage, native KiCad DRC verification count, and 350-DPI proof tile readiness for a job.",
+      "annotations": {
+        "title": "Get PCB Synthesis Job Status",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_verify_stablecoin_payment",
-      "description": "Verify on-chain USDC/USDT settlement (Base L2 / Ethereum) to unlock a completed turnkey manufacturing bundle."
+      "title": "Verify On-Chain Stablecoin Payment",
+      "description": "Verify on-chain USDC/USDT settlement (Base L2 / Ethereum) to unlock a completed turnkey manufacturing bundle.",
+      "annotations": {
+        "title": "Verify On-Chain Stablecoin Payment",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_download_fab_bundle",
-      "description": "Download the unlocked turnkey fabrication .zip bundle (routed .kicad_pcb, RS-274X Gerbers, Excellon drills, IPC-D-356 netlist, JLCPCB BOM/CPL, and 3D WebGL viewer)."
+      "title": "Download Unlocked Turnkey Fabrication Bundle",
+      "description": "Download the unlocked turnkey fabrication .zip bundle (routed .kicad_pcb, RS-274X Gerbers, Excellon drills, IPC-D-356 netlist, JLCPCB BOM/CPL, and 3D WebGL viewer).",
+      "annotations": {
+        "title": "Download Unlocked Turnkey Fabrication Bundle",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_lookup_b2b_invoice",
-      "description": "Retrieve the printable B2B tax invoice and cryptographic chain-of-custody verification certificate for a job."
+      "title": "Look Up B2B Tax Invoice & Custody Certificate",
+      "description": "Retrieve the printable B2B tax invoice and cryptographic chain-of-custody verification certificate for a job.",
+      "annotations": {
+        "title": "Look Up B2B Tax Invoice & Custody Certificate",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_create_coinbase_checkout",
-      "description": "Generate a Coinbase Onramp / Base L2 USDC checkout session for a completed synthesis job."
+      "title": "Create Coinbase Base L2 USDC Checkout Session",
+      "description": "Generate a Coinbase Onramp / Base L2 USDC checkout session for a completed synthesis job.",
+      "annotations": {
+        "title": "Create Coinbase Base L2 USDC Checkout Session",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_purge_job_vault",
-      "description": "Cryptographically shred and purge all uploaded CAD artifacts and output bundles for a job from the cloud enclave."
+      "title": "Purge Enclave Job Vault",
+      "description": "Cryptographically shred and purge all uploaded CAD artifacts and output bundles for a job from the cloud enclave.",
+      "annotations": {
+        "title": "Purge Enclave Job Vault",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_route_pcb",
-      "description": "Alias for calligraphy_compile_board to trigger autonomous multi-layer 3D PCB routing."
+      "title": "Synthesize & Route Multi-Layer PCB",
+      "description": "Alias for calligraphy_compile_board to trigger autonomous multi-layer 3D PCB routing.",
+      "annotations": {
+        "title": "Synthesize & Route Multi-Layer PCB",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
     },
     {
       "name": "calligraphy_request_ip_whitelist",
-      "description": "Submit an enterprise IP whitelist request for high-volume autonomous CI/CD hardware synthesis pipelines."
+      "title": "Request Enterprise IP Whitelist Quota",
+      "description": "Submit an enterprise IP whitelist request for high-volume autonomous CI/CD hardware synthesis pipelines.",
+      "annotations": {
+        "title": "Request Enterprise IP Whitelist Quota",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
     }
   ]
 }

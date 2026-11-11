@@ -55,11 +55,19 @@ LOCAL_GALLERY_BOARDS: List[Dict[str, Any]] = [
 LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     {
         "name": "analyze_kicad_pcb",
+        "title": "Analyze KiCad PCB Layout",
         "description": (
             "Parse and analyze a KiCad `.kicad_pcb` board locally (from `pcb_text` or `project_path`). "
             "Extracts copper layer stackup, board outline dimensions (mm), footprint count, SMD vs THT pad counts, "
             "fine-pitch (<=0.50mm) pad count, net count, routed trace/arc segment statistics, and via count."
         ),
+        "annotations": {
+            "title": "Analyze KiCad PCB Layout",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": False,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -71,11 +79,19 @@ LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "analyze_specctra_dsn",
+        "title": "Analyze Specctra DSN Autorouter File",
         "description": (
             "Parse and analyze a Specctra `.dsn` PCB autorouter file locally (from `dsn_text` or `project_path`). "
             "Extracts units, resolution, signal/power copper layers, board boundary dimensions, component count, "
             "netlist summary, and design rule clearances/widths."
         ),
+        "annotations": {
+            "title": "Analyze Specctra DSN Autorouter File",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": False,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -87,11 +103,19 @@ LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calculate_pcb_trace_impedance",
+        "title": "Calculate PCB Trace Impedance & IPC-2152 Current",
         "description": (
             "Local PCB transmission-line impedance & IPC-2152 trace current calculator. "
             "Computes single-ended microstrip/stripline Z0 (Ohms), edge-coupled differential Zdiff (Ohms), "
             "propagation delay (ps/mm), and recommended trace width for a target impedance or DC current (Amps)."
         ),
+        "annotations": {
+            "title": "Calculate PCB Trace Impedance & IPC-2152 Current",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": False,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -109,11 +133,19 @@ LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "audit_pcb_dfm_rules",
+        "title": "Audit PCB DFM Fabrication Rules",
         "description": (
             "Run a local Design-for-Manufacturing (DFM) rule check on a `.kicad_pcb` or `.dsn` file against "
             "standard 2-layer or 4-layer fabrication limits (minimum trace width, clearance, via hole diameter, "
             "and annular ring width)."
         ),
+        "annotations": {
+            "title": "Audit PCB DFM Fabrication Rules",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": False,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -129,10 +161,18 @@ LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
 CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     {
         "name": "calligraphy_list_gallery_boards",
+        "title": "List Verified 0-DRC Benchmark Gallery Boards",
         "description": (
             "List the 13 conquered open-source PCB benchmark boards (100.0% routed, 0 native KiCad copper DRC violations) "
             "and available 1-click sample demo IDs ('2l_rp2040', '2l_stickhub', '4l_carrier')."
         ),
+        "annotations": {
+            "title": "List Verified 0-DRC Benchmark Gallery Boards",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {},
@@ -140,6 +180,7 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_preflight_audit",
+        "title": "Run Pre-Flight CAD Doctor & Instant Tier Quote",
         "description": (
             "Inspect a .kicad_pcb file or .zip project bundle (including atopile/tscircuit/Altium/Allegro builds), "
             "verify outline/pad readiness, and return a deterministic 3-Lever NRE-anchored price quote ($149 vibe_micro "
@@ -148,6 +189,13 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
             "Mode B (User's Local Board): Pass a local file path in `project_path` (stdio mode) or pass its contents in "
             "`pcb_text` + `filename` (or `upload_b64` for `.PcbDoc`/`.zip`)."
         ),
+        "annotations": {
+            "title": "Run Pre-Flight CAD Doctor & Instant Tier Quote",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -170,6 +218,7 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_compile_board",
+        "title": "Compile & Route PCB in Cloud Enclave",
         "description": (
             "Compile a PCB through Calligraphy EDA (3D HDI synthesis + Snowman teardrop pad fillets "
             "+ Zero-VIPPO DFM surgery + 3D nodal G*V=I physics) and return 0-DRC telemetry, preview crops, "
@@ -178,6 +227,13 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
             "Mode B (User's Local Board): Pass a local file path in `project_path` (stdio mode) or pass its contents in "
             "`pcb_text` + `filename` (or `upload_b64` for `.PcbDoc`/`.zip`)."
         ),
+        "annotations": {
+            "title": "Compile & Route PCB in Cloud Enclave",
+            "readOnlyHint": False,
+            "destructiveHint": False,
+            "idempotentHint": False,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -208,11 +264,19 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_get_job_status",
+        "title": "Get PCB Synthesis Job Status",
         "description": (
             "Query the compilation and payment status of a Calligraphy EDA job (`job_id`). "
             "When `status` is `COMPLETED_AWAITING_PAYMENT`, returns `stablecoin_payment_instructions` "
             "with the job's unique watch-only `deposit_address` (`0x...`) for autonomous USDT/USDC checkout."
         ),
+        "annotations": {
+            "title": "Get PCB Synthesis Job Status",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -223,12 +287,20 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_verify_stablecoin_payment",
+        "title": "Verify On-Chain Stablecoin Payment",
         "description": (
             "Submit an on-chain `USDT` or `USDC` transaction hash (`tx_hash`) sent to the job's unique "
             "watch-only `deposit_address` on `base`, `arbitrum`, `polygon`, or `ethereum` to receive a "
             "private HMAC-SHA256 payment receipt (`receipt_hmac_sha256`) and immediately unlock "
             "`calligraphy_download_fab_bundle` with zero human browser intervention."
         ),
+        "annotations": {
+            "title": "Verify On-Chain Stablecoin Payment",
+            "readOnlyHint": False,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -252,11 +324,19 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_download_fab_bundle",
+        "title": "Download Unlocked Turnkey Fabrication Bundle",
         "description": (
             "Download the unlocked routed .kicad_pcb and turnkey JLCPCB/PCBWay .zip bundle "
             "(Gerbers, Excellon drills, IPC-D-356, BOM, CPL, and 3D HTML5 viewer) once paid via "
             "Stripe Checkout, autonomous USDT/USDC stablecoin verification, or active 30-day board license."
         ),
+        "annotations": {
+            "title": "Download Unlocked Turnkey Fabrication Bundle",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -273,10 +353,18 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_lookup_b2b_invoice",
+        "title": "Look Up B2B Tax Invoice & Custody Certificate",
         "description": (
             "Look up a Calligraphy EDA job and generate a B2B Tax Invoice & Chain-of-Custody Certificate "
             "with custom PO number and company name."
         ),
+        "annotations": {
+            "title": "Look Up B2B Tax Invoice & Custody Certificate",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -290,11 +378,19 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_create_coinbase_checkout",
+        "title": "Create Coinbase Base L2 USDC Checkout Session",
         "description": (
             "Create a 1-Click Coinbase Pay / Coinbase Onchain Payment Protocol checkout session "
             "(and x402 AI-agent payment URL) settling in USDC on Base (chain_id=8453) with automatic "
             "DEX token conversion and zero gas-dust sweeping."
         ),
+        "annotations": {
+            "title": "Create Coinbase Base L2 USDC Checkout Session",
+            "readOnlyHint": False,
+            "destructiveHint": False,
+            "idempotentHint": False,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "required": ["job_id"],
@@ -307,10 +403,18 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_purge_job_vault",
+        "title": "Purge Enclave Job Vault",
         "description": (
             "Immediately shred all enclave CAD and synthesis artifacts for job_id and return a "
             "cryptographically signed CertificateOfDestruction (zero_retention_verified=True)."
         ),
+        "annotations": {
+            "title": "Purge Enclave Job Vault",
+            "readOnlyHint": False,
+            "destructiveHint": True,
+            "idempotentHint": True,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "required": ["job_id"],
@@ -321,6 +425,7 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_route_pcb",
+        "title": "Synthesize & Route Multi-Layer PCB",
         "description": (
             "Alias for calligraphy_compile_board: synthesize and route a PCB through Calligraphy EDA "
             "(0 opens, 0 DRC) and return Stripe, Coinbase Pay (x402), and watch-only USDT/USDC payment instructions. "
@@ -328,6 +433,13 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
             "Mode B (User's Local Board): Pass a local file path in `project_path` (stdio mode) or pass its contents in "
             "`pcb_text` + `filename` (or `upload_b64` for `.PcbDoc`/`.zip`)."
         ),
+        "annotations": {
+            "title": "Synthesize & Route Multi-Layer PCB",
+            "readOnlyHint": False,
+            "destructiveHint": False,
+            "idempotentHint": False,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -348,10 +460,18 @@ CLOUD_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
     },
     {
         "name": "calligraphy_request_ip_whitelist",
+        "title": "Request Enterprise IP Whitelist Quota",
         "description": (
             "Submit a Support Whitelist Request for an engineering team, corporate NAT IP, or PCB layout "
             "agency that needs higher daily compilation write limits (e.g. 25–100 compiles/day)."
         ),
+        "annotations": {
+            "title": "Request Enterprise IP Whitelist Quota",
+            "readOnlyHint": False,
+            "destructiveHint": False,
+            "idempotentHint": False,
+            "openWorldHint": True,
+        },
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -396,14 +516,14 @@ def _local_analyze_kicad_pcb(arguments: Dict[str, Any]) -> Dict[str, Any]:
     tht_pads = sum(1 for p in pads_all if " thru_hole " in p or " np_thru_hole " in p)
     pad_sizes = [
         (float(m.group(1)), float(m.group(2)))
-        for m in re.finditer(r"\(\s*pad\b[^)]*?\(\s*size\s+([0-9.]+)\s+([0-9.]+)\s*\)", text, re.DOTALL)
+        for m in re.finditer(r"\(\s*pad\b[^\n]*?\(\s*size\s+([0-9.]+)\s+([0-9.]+)\s*\)", text)
     ]
     fine_pitch_pads = sum(1 for w, h in pad_sizes if min(w, h) <= 0.30)
     nets = re.findall(r'\(\s*net\s+(\d+)\s+"?([^"\)\n]+)"?\s*\)', text)
     net_names = [n[1].strip() for n in nets if int(n[0]) > 0]
-    segments = re.findall(r"\(\s*segment\b[^)]*?\(\s*width\s+([0-9.]+)\s*\)", text, re.DOTALL)
-    arcs = re.findall(r"\(\s*arc\b[^)]*?\(\s*width\s+([0-9.]+)\s*\)", text, re.DOTALL)
-    vias = re.findall(r"\(\s*via\b[^)]*?\(\s*size\s+([0-9.]+)\s*\)\s*\(\s*drill\s+([0-9.]+)\s*\)", text, re.DOTALL)
+    segments = re.findall(r"\(\s*segment\b[^\n]*?\(\s*width\s+([0-9.]+)\s*\)", text)
+    arcs = re.findall(r"\(\s*arc\b[^\n]*?\(\s*width\s+([0-9.]+)\s*\)", text)
+    vias = re.findall(r"\(\s*via\b[^\n]*?\(\s*size\s+([0-9.]+)\s*\)\s*\(\s*drill\s+([0-9.]+)\s*\)", text)
     edge_pts = [
         (float(m.group(1)), float(m.group(2)))
         for m in re.finditer(r'\(\s*gr_(?:line|rect|arc|poly)\b.*?\(\s*(?:start|end|xy)\s+(-?[0-9.]+)\s+(-?[0-9.]+)\s*\).*?"Edge\.Cuts"', text, re.DOTALL)
@@ -515,8 +635,8 @@ def _local_audit_pcb_dfm_rules(arguments: Dict[str, Any]) -> Dict[str, Any]:
     }.get(tier, {"min_trace_mm": 0.127, "min_via_drill_mm": 0.30, "min_via_size_mm": 0.50, "min_annular_ring_mm": 0.10})
     if not text:
         return {"error": "Provide `pcb_text` or `project_path` to audit."}
-    seg_widths = [float(w) for w in re.findall(r"\(\s*(?:segment|arc)\b[^)]*?\(\s*width\s+([0-9.]+)\s*\)", text, re.DOTALL)]
-    vias = [(float(m.group(1)), float(m.group(2))) for m in re.finditer(r"\(\s*via\b[^)]*?\(\s*size\s+([0-9.]+)\s*\)\s*\(\s*drill\s+([0-9.]+)\s*\)", text, re.DOTALL)]
+    seg_widths = [float(w) for w in re.findall(r"\(\s*(?:segment|arc)\b[^\n]*?\(\s*width\s+([0-9.]+)\s*\)", text)]
+    vias = [(float(m.group(1)), float(m.group(2))) for m in re.finditer(r"\(\s*via\b[^\n]*?\(\s*size\s+([0-9.]+)\s*\)\s*\(\s*drill\s+([0-9.]+)\s*\)", text)]
     violations = []
     min_w = min(seg_widths) if seg_widths else None
     if min_w is not None and min_w + 1e-6 < limits["min_trace_mm"]:
