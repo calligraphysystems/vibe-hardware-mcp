@@ -1,0 +1,89 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.calligraphysystems/vibe-hardware-mcp",
+  "title": "Vibe-Coding Hardware & Autonomous PCB Physical Synthesis MCP Server",
+  "description": "Zero-dependency Python 3 MCP server & Streamable HTTP endpoint for KiCad (.kicad_pcb), Specctra (.dsn), Altium (.PcbDoc), atopile (.ato), and tscircuit (.tsx) PCB layout analysis, IPC-2141A microstrip/stripline impedance & IPC-2152 current calculation, DFM rule auditing (JLCPCB/PCBWay), and autonomous multi-layer 3D PCB routing (0 native KiCad 9 DRC violations across 55/55 verified open-source benchmark boards).",
+  "version": "1.2.0",
+  "websiteUrl": "https://calligraphyeda.com",
+  "repository": {
+    "url": "https://github.com/calligraphysystems/vibe-hardware-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://calligraphyeda.com/api/v1/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/calligraphysystems/vibe-hardware-mcp:latest",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "name": "analyze_kicad_pcb",
+      "description": "Parse a KiCad .kicad_pcb S-expression locally to extract copper layers, board outline dimensions (mm), component/pad counts, fine-pitch density, netlist summary, and routed track/via statistics."
+    },
+    {
+      "name": "analyze_specctra_dsn",
+      "description": "Parse a Specctra .dsn autorouter file locally to extract units, resolution, signal/power layers, boundary dimensions, component pin count, net connectivity, and design rule clearances/widths."
+    },
+    {
+      "name": "calculate_pcb_trace_impedance",
+      "description": "Closed-form IPC-2141A microstrip & stripline characteristic impedance (Z0), edge-coupled differential pair impedance (Zdiff), propagation delay (ps/mm), and IPC-2152 DC current capacity / temperature-rise calculator."
+    },
+    {
+      "name": "audit_pcb_dfm_rules",
+      "description": "Audit .kicad_pcb and .dsn trace widths, clearances, via drill diameters, and annular rings against standard_2l, standard_4l, and fine_hdi fabrication rules (JLCPCB / PCBWay)."
+    },
+    {
+      "name": "calligraphy_list_gallery_boards",
+      "description": "List the verified open-source reference PCB catalog and 55/55 benchmark suite (100.0% routed completion, 0 native KiCad 9 copper DRC violations)."
+    },
+    {
+      "name": "calligraphy_preflight_audit",
+      "description": "Run a free ($0) pre-flight CAD doctor, layer/pad/fine-pitch audit, and instant tier quote on a .kicad_pcb, .dsn, .PcbDoc, .ato, .tsx, or .zip board payload."
+    },
+    {
+      "name": "calligraphy_compile_board",
+      "description": "Submit a PCB layout or hardware archive for autonomous multi-layer 3D routing, curvilinear G1 arc & teardrop reinforcement, and 350-DPI visual proof verification."
+    },
+    {
+      "name": "calligraphy_get_job_status",
+      "description": "Poll live synthesis progress, routing completion percentage, native KiCad DRC verification count, and 350-DPI proof tile readiness for a job."
+    },
+    {
+      "name": "calligraphy_verify_stablecoin_payment",
+      "description": "Verify on-chain USDC/USDT settlement (Base L2 / Ethereum) to unlock a completed turnkey manufacturing bundle."
+    },
+    {
+      "name": "calligraphy_download_fab_bundle",
+      "description": "Download the unlocked turnkey fabrication .zip bundle (routed .kicad_pcb, RS-274X Gerbers, Excellon drills, IPC-D-356 netlist, JLCPCB BOM/CPL, and 3D WebGL viewer)."
+    },
+    {
+      "name": "calligraphy_lookup_b2b_invoice",
+      "description": "Retrieve the printable B2B tax invoice and cryptographic chain-of-custody verification certificate for a job."
+    },
+    {
+      "name": "calligraphy_create_coinbase_checkout",
+      "description": "Generate a Coinbase Onramp / Base L2 USDC checkout session for a completed synthesis job."
+    },
+    {
+      "name": "calligraphy_purge_job_vault",
+      "description": "Cryptographically shred and purge all uploaded CAD artifacts and output bundles for a job from the cloud enclave."
+    },
+    {
+      "name": "calligraphy_route_pcb",
+      "description": "Alias for calligraphy_compile_board to trigger autonomous multi-layer 3D PCB routing."
+    },
+    {
+      "name": "calligraphy_request_ip_whitelist",
+      "description": "Submit an enterprise IP whitelist request for high-volume autonomous CI/CD hardware synthesis pipelines."
+    }
+  ]
+}

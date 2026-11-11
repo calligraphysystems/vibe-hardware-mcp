@@ -1,0 +1,26 @@
+# Smithery.ai MCP Server Configuration — Vibe-Coding Hardware MCP Server
+# Zero-dependency Python 3 MCP server (`calligraphy_mcp_stdio.py`) + Streamable HTTP (`https://calligraphyeda.com/api/v1/mcp`)
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    description: "Zero API key required for local PCB S-expression/Specctra DSN analysis, IPC-2141A impedance/current calculation, DFM rule auditing, 55-board benchmark inspection, and Phase 1 2L/4L pre-flight & synthesis."
+  commandFunction: |-
+    (config) => ({
+      command: 'python3',
+      args: ['calligraphy_mcp_stdio.py'],
+      env: {
+        PYTHONUNBUFFERED: '1'
+      }
+    })
+  exampleConfig: {}
+
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
+
+remotes:
+  - type: streamable-http
+    url: https://calligraphyeda.com/api/v1/mcp
