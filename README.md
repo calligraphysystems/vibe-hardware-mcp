@@ -1,5 +1,6 @@
 # Vibe-Coding Hardware MCP Server (`vibe-hardware-mcp`)
 
+[![mcptry](https://mcptry.com/badge/io.github.calligraphysystems/vibe-hardware-mcp)](https://mcptry.com/servers/io.github.calligraphysystems/vibe-hardware-mcp)
 [![calligraphysystems/vibe-hardware-mcp MCP server](https://glama.ai/mcp/servers/calligraphysystems/vibe-hardware-mcp/badges/score.svg)](https://glama.ai/mcp/servers/calligraphysystems/vibe-hardware-mcp)
 
 > **A zero-dependency Python 3 Model Context Protocol (`MCP`) server (`calligraphy_mcp_stdio.py`) for local KiCad `.kicad_pcb` & Specctra `.dsn` parsing, PCB transmission-line impedance & IPC-2152 current calculation, local Design-for-Manufacturing (DFM) rule auditing, and multi-layer PCB trace routing.**

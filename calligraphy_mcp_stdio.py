@@ -119,7 +119,7 @@ LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
         "inputSchema": {
             "type": "object",
             "properties": {
-                "mode": {"type": "string", "enum": ["microstrip", "stripline"], "default": "microstrip"},
+                "mode": {"type": "string", "enum": ["microstrip", "stripline"], "default": "microstrip", "description": "Transmission-line geometry (microstrip or stripline)"},
                 "trace_width_mm": {"type": "number", "default": 0.15, "description": "Trace width W in mm"},
                 "trace_spacing_mm": {"type": "number", "default": 0.15, "description": "Edge-to-edge spacing S in mm for differential pair"},
                 "dielectric_height_mm": {"type": "number", "default": 0.20, "description": "Dielectric height H to reference plane in mm"},
@@ -151,7 +151,7 @@ LOCAL_MCP_TOOLS_SCHEMA: List[Dict[str, Any]] = [
             "properties": {
                 "pcb_text": {"type": "string", "description": "Raw `.kicad_pcb` or `.dsn` file content"},
                 "project_path": {"type": "string", "description": "Local path to `.kicad_pcb` or `.dsn` file"},
-                "fab_tier": {"type": "string", "enum": ["standard_2l", "standard_4l", "fine_hdi"], "default": "standard_2l"},
+                "fab_tier": {"type": "string", "enum": ["standard_2l", "standard_4l", "fine_hdi"], "default": "standard_2l", "description": "Target fabrication rule tier"},
             },
             "required": [],
         },

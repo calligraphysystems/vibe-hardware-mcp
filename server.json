@@ -3,7 +3,7 @@
   "name": "io.github.calligraphysystems/vibe-hardware-mcp",
   "title": "Autonomous 0-DRC PCB Routing Foundry & Hardware MCP Server",
   "description": "Autonomous 0-DRC PCB Routing Foundry & Model Context Protocol (MCP) Server for KiCad, Robotics, IoT, ESP32, STM32 & Embedded Hardware (https://calligraphyeda.com). Includes local KiCad (.kicad_pcb) & Specctra (.dsn) analysis, IPC-2141A impedance & IPC-2152 current calculation, DFM rule auditing, and multi-layer 3D PCB routing.",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "websiteUrl": "https://calligraphyeda.com",
   "repository": {
     "url": "https://github.com/calligraphysystems/vibe-hardware-mcp",
@@ -67,6 +67,18 @@
       "description": "Audit .kicad_pcb and .dsn trace widths, clearances, via drill diameters, and annular rings against standard_2l, standard_4l, and fine_hdi fabrication rules (JLCPCB / PCBWay).",
       "annotations": {
         "title": "Audit PCB DFM Fabrication Rules",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "audit_pre_route_rf_and_fab_stackup",
+      "title": "Audit Pre-Route Vendor Stackup, 50-Ohm RF & VIPPO Rules",
+      "description": "Run the 4-Stage Pre-Route Vendor Stackup, 50-Ohm Microstrip vs. Coplanar Waveguide (CPWG) Impedance, 3*H1 Coplanar Ground-Pour Encroachment, Inner Reference-Plane Return Corridor, and Via-in-Paste (VIPPO) manufacturing gate before routing begins.",
+      "annotations": {
+        "title": "Audit Pre-Route Vendor Stackup, 50-Ohm RF & VIPPO Rules",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -204,6 +216,15 @@
         "idempotentHint": false,
         "openWorldHint": true
       }
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/calligraphysystems/vibe-hardware-mcp/main/assets/karabas_nano_2layer_738pads_0drc_3d.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
     }
   ]
 }
